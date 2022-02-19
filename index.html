@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/TR/xhtml1" xml:lang="en" lang="en">
+<head>
+    <link rel="shortcut icon" href="icon.png" type="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        a:link {
+          color: green;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        a:visited {
+          color: pink;
+          background-color: transparent;
+          text-decoration: none;
+        }
+        a:hover {
+          color: white;
+          background-color: transparent;
+          text-decoration: underline;
+        }
+        a:active {
+          color: yellow;
+          background-color: transparent;
+          text-decoration: underline;
+        }
+        </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Login</h1>
+        <form  action="feedback.html" onsubmit="return validation()"><br>
+            <input type="email" id ="useremail" name="email" placeholder="Email address" required="required" />
+            <input type="password" id ="psw" name="password" placeholder="Password" required="required" /><br><valid style="font-size: 15px;"></valid><br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Log in</button><br><a href="feedback.html">Skip Login and directly go to feedback? click here.</a>
+
+        </form>
+    </div>
+</body>
+</html>
+<script>
+ 
+    var memail=document.getElementById('useremail');
+    var mpassword=document.getElementById('psw');
+    var pvalid=document.getElementsByTagName('valid');
+  
+    function validation()
+    {
+        if (memail.value=="" && mpassword.value==""){          
+            memail.style.border="solid 1px red";
+            mpassword.style.border="solid 1px red";
+            return false;
+        }
+        
+  
+        if (memail.value==""){
+            memail.style.border="solid 1px red";
+            return false;
+        }
+       if (mpassword.value==""){
+            mpassword.style.border="solid 1px red";
+            return false;
+        }
+        memail.style.border="solid 1px white";
+        mpassword.style.border="solid 1px white";
+        
+    }
+    memail.onkeydown=function()
+      {
+        const validemail=/^([a-z0-9\.-]+)@([A-z]+)(university)\.([a-z]{1,3})$/;
+        
+        
+         if(validemail.test(memail.value))
+         {
+          memail.style.border="solid 1px white"; 
+         }
+         else{
+          memail.style.border="solid 2px red";
+         }
+      }
+
+      
+
+      mpassword.onkeydown=function()
+      {
+
+        const validpsw=/^(?=.*\d)(?=.*[a-z])(?=.*[@$!%*?&])(?=.*[A-Z]).{8,}$/;
+        if(validpsw.test(mpassword.value))
+       {
+        pvalid[0].style.display="none"; 
+        mpassword.style.border="solid 1px white"; 
+       }
+       else{
+        mpassword.style.border="solid 2px red";
+        var upperCaseLetters = /[A-Z]/g;
+        if(mpassword.value.match(upperCaseLetters)) {
+          
+        } else {
+            pvalid[0].innerText="Aleast 1 UpperCase";
+            pvalid[0].style.color="red";
+           
+        }
+
+        var lowerCaseLetters = /[a-z]/g;
+        if(mpassword.value.match(lowerCaseLetters)) {
+          
+        } else {
+            pvalid[0].innerText="Aleast 1 lowerCase";
+            pvalid[0].style.color="red";
+           
+        }
+        
+
+        var numbers = /[0-9]/g;
+        if(mpassword.value.match(numbers)) {  
+        } else {
+            pvalid[0].innerText="Aleast 1 Digit";
+            pvalid[0].style.color="red";
+        }
+
+        var numbers = /[@$!%*?&]/g;
+        if(mpassword.value.match(numbers)) {  
+        } else {
+            pvalid[0].innerText="Aleast 1 Special character";
+            pvalid[0].style.color="red";
+        }
+        
+        
+        if(mpassword.value.length>=8) {  
+        } else {
+            pvalid[0].innerText="Minimum 8 characters";
+            pvalid[0].style.color="red";
+        }
+
+       }
+
+        if(mpassword.value!="")
+         {
+          mpassword.style.border="solid 1px white"; 
+         }
+         else{
+          mpassword.style.border="solid 2px red";
+         }
+      }
+     
+  </script>
